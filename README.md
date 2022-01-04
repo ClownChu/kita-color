@@ -22,12 +22,19 @@ node example/xxx.js
 
 <hr>
 
+<h2 id="get-in-npm" align="center">Get in <a href="https://www.npmjs.com/package/kita-color" target="_blank">npm</a></h2>
+
+```bash
+npm i kita-color
+```
+
+<hr>
+
 <h2 id="todos" align="center">TODOs</h2>
 
 <h3 id="pending">Pending</h3>
 
 ```objc
-- [ ] Publish in npm
 - [ ] Write README.md
 - [ ] Add more color types
 - [ ] Add more examples
@@ -45,6 +52,7 @@ node example/xxx.js
 <h3 id="completed">Completed</h3>
 
 ```objc
+- [x] Publish in npm // v0.0.2 - https://github.com/ClownChu/kita-color/commits/0.0.2
 - [x] Write examples // v0.0.1 - https://github.com/ClownChu/kita-color/commits/0.0.1
 - [x] Write tests // v0.0.1 - https://github.com/ClownChu/kita-color/commits/0.0.1
 - [x] Create base // v0.0.1 - https://github.com/ClownChu/kita-color/commits/0.0.1
@@ -93,10 +101,10 @@ node example/xxx.js
     </thead>
     <tbody>
         <tr>
-            <td align="center">rgb(255, 255, 255)</td>
+            <td align="center">255, 255, 255</td>
             <td align="center">#FFFFFF</td>
-            <td align="center">hsv(0, 0, 1)</td>
-            <td align="center">hueyxy(255, 0.33323558422862626, 0.33323558422862626)</td>
+            <td align="center">0, 0, 1</td>
+            <td align="center">255, 0.33323558422862626, 0.33323558422862626</td>
         </tr>
     </tbody>
 </table>
