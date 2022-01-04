@@ -1,0 +1,35 @@
+{
+ "name": "kita-color",
+ "version": "0.0.1",
+ "description": "Color converter capable of converting colors to different representations",
+ "main": "index.js",
+ "scripts": {
+  "test": "mocha --recursive --exit"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/ClownChu/kita-color.git"
+ },
+ "keywords": [
+  "kita",
+  "philips",
+  "hue",
+  "hsv",
+  "rgb",
+  "color",
+  "converter"
+ ],
+ "author": "Vitor de Souza <vitordesouza@hotmail.com.br> (https://www.linkedin.com/in/vitor-de-souza-software/)",
+ "license": "AGPL-3.0",
+ "private": false,
+ "bugs": {
+  "url": "https://github.com/ClownChu/kita-color/issues"
+ },
+ "homepage": "https://github.com/ClownChu/kita-color#readme",
+ "dependencies": {
+  "chai": "^4.3.4",
+  "eslint": "^8.3.0",
+  "json-query": "^2.2.2",
+  "mocha": "^9.1.3"
+ }
+}

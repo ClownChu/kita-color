@@ -1,0 +1,222 @@
+{
+  "testData": [        
+      {
+          "colorType": "Hex",
+          "value": "`#700000`",
+          "results": [
+              {
+                  "colorType": "HueYxy",
+                  "value": "hueyxy(112, 0.7336976866062739, 0.26498465224226997)"
+              },
+              {
+                  "colorType": "HSV",
+                  "value": "hsv(0, 1, 0.4392156862745098)"
+              },
+              {
+                  "colorType": "RGB",
+                  "value": "rgb(112, 0, 0)"
+              }
+          ]
+      },
+      {
+          "colorType": "HSV",
+          "value": "0, 1, 0.4392156862745098",
+          "results": [
+              {
+                  "colorType": "Hex",
+                  "value": "#700000"
+              },
+              {
+                  "colorType": "HueYxy",
+                  "value": "hueyxy(112, 0.7336976866062739, 0.26498465224226997)"
+              },
+              {
+                  "colorType": "RGB",
+                  "value": "rgb(112, 0, 0)"
+              }
+          ]
+      },
+      {
+          "colorType": "HueYxy",
+          "value": "112, 0.7336976866062739, 0.26498465224226997",
+          "results": [
+              {
+                  "colorType": "Hex",
+                  "value": "#700000"
+              },
+              {
+                  "colorType": "HSV",
+                  "value": "hsv(0, 1, 0.4392156862745098)"
+              },
+              {
+                  "colorType": "RGB",
+                  "value": "rgb(112, 0, 0)"
+              }
+          ]
+      },
+      {
+          "colorType": "RGB",
+          "value": "112, 0, 0",
+          "results": [
+              {
+                  "colorType": "Hex",
+                  "value": "#700000"
+              },
+              {
+                  "colorType": "HSV",
+                  "value": "hsv(0, 1, 0.4392156862745098)"
+              },
+              {
+                  "colorType": "HueYxy",
+                  "value": "hueyxy(112, 0.7336976866062739, 0.26498465224226997)"
+              }
+          ]
+      },
+
+      {
+          "colorType": "Hex",
+          "value": "`#ff0000`",
+          "results": [
+              {
+                  "colorType": "HueYxy",
+                  "value": "hueyxy(255, 0.7336976866062739, 0.26498465224226997)"
+              },
+              {
+                  "colorType": "HSV",
+                  "value": "hsv(0, 1, 1)"
+              },
+              {
+                  "colorType": "RGB",
+                  "value": "rgb(255, 0, 0)"
+              }
+          ]
+      },
+      {
+          "colorType": "HSV",
+          "value": "0, 1, 1",
+          "results": [
+              {
+                  "colorType": "Hex",
+                  "value": "#ff0000"
+              },
+              {
+                  "colorType": "HueYxy",
+                  "value": "hueyxy(255, 0.7336976866062739, 0.26498465224226997)"
+              },
+              {
+                  "colorType": "RGB",
+                  "value": "rgb(255, 0, 0)"
+              }
+          ]
+      },
+      {
+          "colorType": "HueYxy",
+          "value": "255, 0.7336976866062739, 0.26498465224226997",
+          "results": [
+              {
+                  "colorType": "Hex",
+                  "value": "#ff0000"
+              },
+              {
+                  "colorType": "HSV",
+                  "value": "hsv(0, 1, 1)"
+              },
+              {
+                  "colorType": "RGB",
+                  "value": "rgb(255, 0, 0)"
+              }
+          ]
+      },
+      {
+          "colorType": "RGB",
+          "value": "255, 0, 0",
+          "results": [
+              {
+                  "colorType": "Hex",
+                  "value": "#ff0000"
+              },
+              {
+                  "colorType": "HSV",
+                  "value": "hsv(0, 1, 1)"
+              },
+              {
+                  "colorType": "HueYxy",
+                  "value": "hueyxy(255, 0.7336976866062739, 0.26498465224226997)"
+              }
+          ]
+      },
+
+      {
+          "colorType": "Hex",
+          "value": "`#8a457a`",
+          "results": [
+              {
+                  "colorType": "HueYxy",
+                  "value": "hueyxy(138, 0.35801350456865766, 0.25814576216311497)"
+              },
+              {
+                  "colorType": "HSV",
+                  "value": "hsv(313.9130434782609, 0.5, 0.5411764705882353)"
+              },
+              {
+                  "colorType": "RGB",
+                  "value": "rgb(138, 69, 122)"
+              }
+          ]
+      },
+      {
+          "colorType": "HSV",
+          "value": "313.9130434782609, 0.5, 0.5411764705882353",
+          "results": [
+              {
+                  "colorType": "Hex",
+                  "value": "#8a457a"
+              },
+              {
+                  "colorType": "HueYxy",
+                  "value": "hueyxy(138, 0.35801350456865766, 0.25814576216311497)"
+              },
+              {
+                  "colorType": "RGB",
+                  "value": "rgb(138, 69, 122)"
+              }
+          ]
+      },
+      {
+          "colorType": "HueYxy",
+          "value": "138, 0.35801350456865766, 0.25814576216311497",
+          "results": [
+              {
+                  "colorType": "Hex",
+                  "value": "#8a457a"
+              },
+              {
+                  "colorType": "HSV",
+                  "value": "hsv(313.9130434782609, 0.5, 0.5411764705882353)"
+              },
+              {
+                  "colorType": "RGB",
+                  "value": "rgb(138, 69, 122)"
+              }
+          ]
+      },
+      {
+          "colorType": "RGB",
+          "value": "138, 69, 122",
+          "results": [
+              {
+                  "colorType": "Hex",
+                  "value": "#8a457a"
+              },
+              {
+                  "colorType": "HSV",
+                  "value": "hsv(313.9130434782609, 0.5, 0.5411764705882353)"
+              },
+              {
+                  "colorType": "HueYxy",
+                  "value": "hueyxy(138, 0.35801350456865766, 0.25814576216311497)"
+              }
+          ]
+      }
+  ]
+}
