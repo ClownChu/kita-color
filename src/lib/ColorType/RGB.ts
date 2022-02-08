@@ -1,22 +1,34 @@
-'use strict'
+import { Color } from './Color';
+import { GamutPoint } from '../Gamut/GamutPoint';
 
-const { Color } = require("./Color")
-const { GamutPoint } = require("../Gamut/GamutPoint")
+export class RGB extends Color {    
+    private r: number;
+    public get R() {
+        return this.r;
+    }
 
-class RGB extends Color {
+    private g: number;
+    public get G() {
+        return this.g;
+    }
+
+    private b: number;
+    public get B() {
+        return this.b;
+    }
+
     /**
      * Constructs {@link RGB} color object
      * @param {int} r Bytes representation of the amount of red pigments in the color (Values: 0 - 255)
      * @param {int} g Bytes representation of the amount of green pigments in the color (Values: 0 - 255)
      * @param {int} b Bytes representation of the amount of blue pigments in the color (Values: 0 - 255)
      */
-    constructor (r, g, b) {
-        super(`rgb(${r}, ${g}, ${b})`)
-        this.name = `RGB`
+    constructor (r: number, g: number, b: number) {
+        super(`rgb(${r}, ${g}, ${b})`, `RGB`);
 
-        this.r = r
-        this.g = g
-        this.b = b
+        this.r = r;
+        this.g = g;
+        this.b = b;
     }
 
     /**
@@ -25,24 +37,24 @@ class RGB extends Color {
      * @param {string} hex Hexadecimal representation of color
      * @returns {RGB} object with {@link RGB} representation of color
      */
-    static fromHex(hex) {
-        let r = 0
-        let g = 0
-        let b = 0
+    static fromHex(hex: string) {
+        let r = 0;
+        let g = 0;
+        let b = 0;
 
         if (hex.length === 4) {
-          r = parseInt(hex[1] + hex[1], 16)
-          g = parseInt(hex[2] + hex[2], 16)
-          b = parseInt(hex[3] + hex[3], 16)
+          r = parseInt(hex[1] + hex[1], 16);
+          g = parseInt(hex[2] + hex[2], 16);
+          b = parseInt(hex[3] + hex[3], 16);
         } else if (hex.length === 7) {
-          r = parseInt(hex[1] + hex[2], 16)
-          g = parseInt(hex[3] + hex[4], 16)
-          b = parseInt(hex[5] + hex[6], 16)
+          r = parseInt(hex[1] + hex[2], 16);
+          g = parseInt(hex[3] + hex[4], 16);
+          b = parseInt(hex[5] + hex[6], 16);
         } else {
-            throw new Error(`Invalid Hex? '${hex}' cannot be converted to RGB`)
+            throw new Error(`Invalid Hex? '${hex}' cannot be converted to RGB`);
         }
         
-        return new RGB(r, g, b)
+        return new RGB(r, g, b);
     }
 
     /**
@@ -53,57 +65,57 @@ class RGB extends Color {
      * @param {float} v Color brightness value representation (Values: 0 - 1)
      * @returns {RGB} object with {@link RGB} representation of color
      */
-    static fromHSV(h, s, v) {
-        h = h / 360
-        const i = Math.floor(h * 6)
-        const f = h * 6 - i
-        const p = v * (1 - s)
-        const q = v * (1 - f * s)
-        const t = v * (1 - (1 - f) * s)
+    static fromHSV(h: number, s: number, v: number) {
+        h = h / 360;
+        const i = Math.floor(h * 6);
+        const f = h * 6 - i;
+        const p = v * (1 - s);
+        const q = v * (1 - f * s);
+        const t = v * (1 - (1 - f) * s);
 
-        let r = 0
-        let g = 0
-        let b = 0
+        let r = 0;
+        let g = 0;
+        let b = 0;
         switch (i % 6) {
             case 0: 
-                r = v
-                g = t
-                b = p
-                break
+                r = v;
+                g = t;
+                b = p;
+                break;
             case 1:
-                r = q
-                g = v 
-                b = p
-                break
+                r = q;
+                g = v; 
+                b = p;
+                break;
             case 2: 
-                r = p
-                g = v
-                b = t
-                break
+                r = p;
+                g = v;
+                b = t;
+                break;
             case 3: 
-                r = p 
-                g = q 
-                b = v
-                break
+                r = p; 
+                g = q; 
+                b = v;
+                break;
             case 4: 
-                r = t 
-                g = p 
-                b = v
-                break
+                r = t; 
+                g = p; 
+                b = v;
+                break;
             case 5: 
-                r = v
-                g = p 
-                b = q
-                break
+                r = v;
+                g = p; 
+                b = q;
+                break;
             default:
-                throw new Error(`Invalid HSV? '${arguments.join(`, `)}' cannot be converted to RGB`)
+                throw new Error(`Invalid HSV? '${h}, ${s}, ${v}' cannot be converted to RGB`);
         }
 
         return new RGB(
             Math.round(r * 255),
             Math.round(g * 255),
             Math.round(b * 255)
-        )
+        );
     }
 
     /**
@@ -154,47 +166,43 @@ class RGB extends Color {
      *  | B |   | Z |   |  0.051713    -0.121364    1.011530 |
      * 
      */
-    static fromHueYxy(brightness, x, y) {
-		let point = new GamutPoint(x, y)
+    static fromHueYxy(brightness: number, x: number, y: number) {
+		const point = new GamutPoint(x, y);
 
-		const Y = brightness / 255
-		const X = (Y / point.y) * point.x
-		const Z = (Y / point.y) * (1.0 - point.x - point.y)
+		const Y = brightness / 255;
+		const X = (Y / point.Y) * point.X;
+		const Z = (Y / point.Y) * (1.0 - point.X - point.Y);
 
 
-        let r = Math.abs( X * 0.4184657124218950 - Y * 0.1586607848037990 - Z * 0.0828349276180955)
-        let g = Math.abs(-X * 0.0911689639090227 + Y * 0.2524314421394650 + Z * 0.0157075217695576)
-        let b = Math.abs( X * 0.0005491061132860 - Y * 0.0025498125468633 + Z * 0.1785989139215200)
+        let r = Math.abs( X * 0.4184657124218950 - Y * 0.1586607848037990 - Z * 0.0828349276180955);
+        let g = Math.abs(-X * 0.0911689639090227 + Y * 0.2524314421394650 + Z * 0.0157075217695576);
+        let b = Math.abs( X * 0.0005491061132860 - Y * 0.0025498125468633 + Z * 0.1785989139215200);
 
         if (r > b && r > g) {
-            g = g / r
-            b = b / r
+            g = g / r;
+            b = b / r;
 
-            r = 1.0
+            r = 1.0;
         } else if (g > r && g > b) {
-            r = r / g
-            b = b / g 
+            r = r / g;
+            b = b / g; 
 
-            g = 1.0 
+            g = 1.0; 
         } else if (b > r && b > g) {
-            r = r / b
-            g = g / b
+            r = r / b;
+            g = g / b;
             
-            b = 1.0
+            b = 1.0;
         }
 
-        r = Math.min(r, 1.0)
-        g = Math.min(g, 1.0)
-        b = Math.min(b, 1.0)
+        r = Math.min(r, 1.0);
+        g = Math.min(g, 1.0);
+        b = Math.min(b, 1.0);
 
         return new RGB(
             Math.round(r * 255 * Y),
             Math.round(g * 255 * Y), 
             Math.round(b * 255 * Y)
-        )
+        );
     }
-}
-
-module.exports = {
-    RGB
 }

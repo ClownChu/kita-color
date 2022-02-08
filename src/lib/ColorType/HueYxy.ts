@@ -1,22 +1,35 @@
-'use strict'
+import { Color } from './Color';
+import { GamutPoint } from '../Gamut/GamutPoint';
+import { GamutRange } from '../Gamut/GamutRange';
 
-const { Color } = require('./Color')
-const { GamutPoint } = require('../Gamut/GamutPoint')
+export class HueYxy extends Color {
+    private brightness: number;
+    public get Brightness() {
+        return this.brightness;
+    }
 
-class HueYxy extends Color {
+    private x: number;
+    public get X() {
+        return this.x;
+    }
+
+    private y: number;
+    public get Y() {
+        return this.y;
+    }
+
     /**
      * Constructs {@link HueYxy} color object
      * @param {int} brightness Bytes representation of the color's brightness (Values: 0 - 255)
      * @param {float} x X coordinate of color in the CIE1931 color space
      * @param {float} y Y coordinate of color in the CIE1931 color space
      */
-    constructor(brightness, x, y) {
-        super(`hueyxy(${brightness}, ${x}, ${y})`)
-        this.name = `HueYxy`
-        
-        this.brightness = brightness
-        this.x = x
-        this.y = y
+    constructor(brightness: number, x: number, y: number) {
+        super(`hueyxy(${brightness}, ${x}, ${y})`, `HueYxy`);
+
+        this.brightness = brightness;
+        this.x = x;
+        this.y = y;
     }
 
     /**
@@ -66,23 +79,23 @@ class HueYxy extends Color {
      *  | Z |   | B |   | 0.000088    0.072310    0.986039 |
      * 
      */
-    static fromRGB(r, g, b) {
-        r = r / 255
-        g = g / 255
-        b = b / 255
+    static fromRGB(r: number, g: number, b: number) {
+        r = r / 255;
+        g = g / 255;
+        b = b / 255;
 
-        const X = r * 0.49000 * (1/0.17697) + g * 0.31000 * (1/0.17697) + b * 0.20000 * (1/0.17697)
-        const Y = r * 0.17697 * (1/0.17697) + g * 0.81240 * (1/0.17697) + b * 0.01063 * (1/0.17697)
-        const Z = r * 0.00088 * (1/0.17697) + g * 0.01000 * (1/0.17697) + b * 0.99000 * (1/0.17697)
+        const X = r * 0.49000 * (1/0.17697) + g * 0.31000 * (1/0.17697) + b * 0.20000 * (1/0.17697);
+        const Y = r * 0.17697 * (1/0.17697) + g * 0.81240 * (1/0.17697) + b * 0.01063 * (1/0.17697);
+        const Z = r * 0.00088 * (1/0.17697) + g * 0.01000 * (1/0.17697) + b * 0.99000 * (1/0.17697);
 
-        const x = (X / (X + Y + Z))
-        const y = (Y / (X + Y + Z))
+        const x = (X / (X + Y + Z));
+        const y = (Y / (X + Y + Z));
 
         return new HueYxy(
             Y,
             x,
             y
-        )
+        );
     }
 
     /**
@@ -90,7 +103,7 @@ class HueYxy extends Color {
      * @returns {GamutPoint} Object with (x, y) coordinates
      */
     getGamutPoint() {
-        return new GamutPoint(this.x, this.y)
+        return new GamutPoint(this.X, this.Y);
     }
 
     /**
@@ -98,23 +111,23 @@ class HueYxy extends Color {
      * @param {GamutRange} gamutRange Colors gamut min and max points
      * @returns {bool} `true` if is within the range
      */
-	isWithinGamutRange(gamutRange) {
-		let v0 = new GamutPoint((gamutRange.b[0] - gamutRange.r[0]), (gamutRange.b[1] - gamutRange.r[1]))
-		let v1 = new GamutPoint((gamutRange.g[0] - gamutRange.r[0]), (gamutRange.g[1] - gamutRange.r[1]))
-		let v2 = new GamutPoint((this.x - gamutRange.r[0]), (this.y - gamutRange.r[1]))
+	isWithinGamutRange(gamutRange: GamutRange) {
+		const v0 = new GamutPoint((gamutRange.B.X - gamutRange.R.X), (gamutRange.B.Y - gamutRange.R.Y));
+		const v1 = new GamutPoint((gamutRange.G.X - gamutRange.R.X), (gamutRange.G.Y - gamutRange.R.Y));
+		const v2 = new GamutPoint((this.X - gamutRange.R.X), (this.Y - gamutRange.R.Y));
 
-		let dot00 = (v0.x * v0.x) + (v0.y * v0.y)
-		let dot01 = (v0.x * v1.x) + (v0.y * v1.y)
-		let dot02 = (v0.x * v2.x) + (v0.y * v2.y)
-		let dot11 = (v1.x * v1.x) + (v1.y * v1.y)
-		let dot12 = (v1.x * v2.x) + (v1.y * v2.y)
+		const dot00 = (v0.X * v0.X) + (v0.Y * v0.Y);
+		const dot01 = (v0.X * v1.X) + (v0.Y * v1.Y);
+		const dot02 = (v0.X * v2.X) + (v0.Y * v2.Y);
+		const dot11 = (v1.X * v1.X) + (v1.Y * v1.Y);
+		const dot12 = (v1.X * v2.X) + (v1.Y * v2.Y);
 
-		let invDenom = 1 / (dot00 * dot11 - dot01 * dot01)
+		const invDenom = 1 / (dot00 * dot11 - dot01 * dot01);
 
-		let u = (dot11 * dot02 - dot01 * dot12) * invDenom
-		let v = (dot00 * dot12 - dot01 * dot02) * invDenom
+		const u = (dot11 * dot02 - dot01 * dot12) * invDenom;
+		const v = (dot00 * dot12 - dot01 * dot02) * invDenom;
 
-		return ((u >= 0) && (v >= 0) && (u + v < 1))
+		return ((u >= 0) && (v >= 0) && (u + v < 1));
 	}
 
     /**
@@ -122,33 +135,29 @@ class HueYxy extends Color {
      * @param {GamutRange} gamutRange Colors gamut min and max points
      * @returns {GamutPoint} Point of the closest color within the {@link GamutRange}
      */
-	getClosestColor(gamutRange) {        
-        const gamutPoint = this.getGamutPoint()
+	getClosestColor(gamutRange: GamutRange) {        
+        const gamutPoint = this.getGamutPoint();
 
-		const closestColorPoints = {
-			rg: gamutPoint.getClosestPoint(gamutRange.r, gamutRange.g),
-			gb: gamutPoint.getClosestPoint(gamutRange.g, gamutRange.b),
-			br: gamutPoint.getClosestPoint(gamutRange.b, gamutRange.r)
-		}
+		const closestColorPoints: { [key: string]: GamutPoint } = {
+			"rg": gamutPoint.getClosestPoint(gamutRange.R, gamutRange.G),
+			"gb": gamutPoint.getClosestPoint(gamutRange.G, gamutRange.B),
+			"br": gamutPoint.getClosestPoint(gamutRange.B, gamutRange.R)
+		};
 
-		let closestDistance = 999999
-		let closestColor = null
-        Object.keys(closestColorPoints).forEach((k, v) => {
-            const distance = gamutPoint.getLineDistance(v)
+		let closestDistance = 999999;
+		let closestColor = null;
+        Object.keys(closestColorPoints).forEach((k) => {
+            const distance = gamutPoint.getLinearDistanceToPoint(closestColorPoints[k]);
             if(closestDistance > distance) {
                 closestDistance = distance;
                 closestColor = k;
             }
-        })
+        });
 
         if (closestColor === null) {
-            throw new Error(`Could not find closest color for Gamut range`)
+            throw new Error(`Could not find closest color for Gamut range`);
         }
 
 		return closestColorPoints[closestColor];
 	}      
-}
-
-module.exports = {
-    HueYxy
 }

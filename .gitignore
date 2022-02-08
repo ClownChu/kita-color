@@ -1,5 +1,6 @@
 .vscode/
-*.code-workspace
-.eslintcache
 node_modules/
-yarn*.log
+
+dist/
+
+.eslintcache

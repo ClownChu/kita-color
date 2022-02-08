@@ -40,7 +40,6 @@ npm i kita-color
 - [ ] Add more examples
 - [ ] Create tests with Philips Hue bridge to test HueYxy conversion
 - [ ] Add documentation
-- [ ] Convert to TypeScript
 - [ ] Debug mode
 - [ ] Logging
 - [ ] Errors
@@ -52,6 +51,7 @@ npm i kita-color
 <h3 id="completed">Completed</h3>
 
 ```objc
+- [x] Convert to TypeScript // v0.0.3 - https://github.com/ClownChu/kita-color/commits/0.0.3
 - [x] Publish in npm // v0.0.2 - https://github.com/ClownChu/kita-color/commits/0.0.2
 - [x] Write examples // v0.0.1 - https://github.com/ClownChu/kita-color/commits/0.0.1
 - [x] Write tests // v0.0.1 - https://github.com/ClownChu/kita-color/commits/0.0.1
